@@ -11,33 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var hero_service_1 = require('./hero.service');
-var hero_detail_component_1 = require('./hero-detail.component');
-var HeroesComponent = (function () {
-    function HeroesComponent(router, heroService) {
+var DashboardComponent = (function () {
+    function DashboardComponent(router, heroService) {
         this.router = router;
         this.heroService = heroService;
+        this.heroes = [];
     }
-    HeroesComponent.prototype.getHeroes = function () {
+    DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+        this.heroService.getHeroes()
+            .then(function (heroes) { return _this.heroes = heroes.slice(1, 5); });
     };
-    HeroesComponent.prototype.ngOnInit = function () {
-        this.getHeroes();
+    DashboardComponent.prototype.gotoDetail = function (hero) {
+        var link = ['HeroDetail', { id: hero.id }];
+        this.router.navigate(link);
     };
-    HeroesComponent.prototype.onSelect = function (hero) { this.selectedHero = hero; };
-    HeroesComponent.prototype.gotoDetail = function () {
-        this.router.navigate(['HeroDetail', { id: this.selectedHero.id }]);
-    };
-    HeroesComponent = __decorate([
+    DashboardComponent = __decorate([
         core_1.Component({
-            selector: 'my-heroes',
-            templateUrl: 'app/heroes.component.html',
-            styleUrls: ['app/heroes.component.css'],
-            directives: [hero_detail_component_1.HeroDetailComponent],
+            selector: 'my-dashboard',
+            templateUrl: 'app/dashboard.component.html',
+            styleUrls: ['app/dashboard.component.css']
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router, hero_service_1.HeroService])
-    ], HeroesComponent);
-    return HeroesComponent;
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
-exports.HeroesComponent = HeroesComponent;
-//# sourceMappingURL=heroes.component.js.map
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map
