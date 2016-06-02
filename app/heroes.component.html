@@ -8,6 +8,11 @@
   </li>
 </ul>
 
+<button (click)="addHero()">Add New Hero</button>
+<div *ngIf="addingHero">
+  <my-hero-detail (close)="close($event)"></my-hero-detail>
+</div>
+
 <div *ngIf="selectedHero">
   <h2>
     {{selectedHero.name | uppercase}} is my hero
