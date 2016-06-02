@@ -45,4 +45,13 @@ height: 1.8em;
 margin-right: .8em;
 border-radius: 4px 0 0 4px;
 }
-
+.delete-button {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #d04949;
+    color: white;
+    padding-bottom: 15px;
+    border-radius: 0 4px 4px 0;
+}
